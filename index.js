@@ -1,12 +1,27 @@
+import { argv } from 'node:process';
 import randomColor from 'randomcolor';
+import chalk from 'chalk';
+
+const color = randomColor({ hue: argv[2], luminosity: argv[3] });
+
+console.log(
+  chalk.hex(color).bold(`###############################
+###############################
+###############################
+#####                     #####
+#####      ${color}        #####
+#####                     #####
+###############################
+###############################
+###############################`),
+);
+
+// Code with a box and hex code inside with color. Different code from the one above.
 
 function genColor() {
-  //luminosity: 'light', (hue = 'blue');
   return randomColor();
 }
-console.log(genColor());
 
-//trying hex color code in the box & then putting color
 let totalColumn = 31;
 let totalRow = 9;
 let string = '';
@@ -31,4 +46,6 @@ for (let row = 1; row <= totalRow; row++) {
   }
   string += '\n';
 }
-console.log(string);
+console.log('\n');
+
+console.log(chalk.hex(color).bold(string));
